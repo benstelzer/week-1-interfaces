@@ -8,7 +8,7 @@ namespace app {
     displayVehicles();
     function displayVehicles() {
         let elemString = "";
-        vehicles.forEach((v) => {
+        vehicles.forEach((v, index) => {
             elemString += `
      <tr>
      <td>${v.make}</td>
@@ -17,11 +17,16 @@ namespace app {
      <td>${v.numDoors}</td>
      <td>${v.numSeats}</td>
      <td>N/A</td>
+     <td class="hcenter"><button class="btn btn-danger" onclick="app.deleteVehicle(${index})">Delete</button></td>
      </tr>
      `
         });
         $('#vehicle-display').html(elemString);
         //document.getElementById('vehicle-display').innerHTML = elemString;
+    }
+    export function deleteVehicle (index: number) {
+      vehicles.splice(index, 1);
+      displayVehicles();
     }
 
     export function startVehicleCreate() {
@@ -79,6 +84,8 @@ namespace app {
             `)
 
         } else if (type === "Truck") {
+
+
 
         }
     }
